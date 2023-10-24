@@ -46,7 +46,7 @@ export async function recipesRoutes(app: FastifyInstance) {
 					id,
 				},
 			});
-			if (recipe.userId !== req.user.sub) {
+			if (recipe.userId !== req.user.sub && !req.user.admin) {
 				return await res.status(401).send();
 			}
 			await prisma.recipe.delete({

@@ -2,7 +2,6 @@ import cors from '@fastify/cors'
 import jwt from '@fastify/jwt'
 import multipart from '@fastify/multipart'
 import fastifyStatic from '@fastify/static'
-import fastifyJwt from '@fastify/jwt'
 import 'dotenv/config'
 import fastify from 'fastify'
 import { resolve } from 'path'
@@ -27,7 +26,7 @@ app.register(jwt, {
 app.register(multipart)
 
 app.register(fastifyStatic, {
-	root: resolve(__dirname, './uploads'),
+	root: resolve(__dirname, '../uploads'),
 	prefix: '/uploads',
 })
 

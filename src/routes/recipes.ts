@@ -63,12 +63,10 @@ export async function recipesRoutes(app: FastifyInstance) {
 			const bodySchema = z.object({
 				title: z.string(),
 				ingredients: z.string(),
-				coverURL: z.string(),
 				instructions: z.string(),
-				tags: z.string(),
 			})
 			const { id } = params.parse(req.params);
-			const { title, ingredients, coverURL, instructions, tags } = bodySchema.parse(req.body);
+			const { title, ingredients, instructions } = bodySchema.parse(req.body);
 
 			const recipe = await prisma.recipe.findFirstOrThrow({
 				where: {
@@ -85,9 +83,7 @@ export async function recipesRoutes(app: FastifyInstance) {
 				data: {
 					title,
 					ingredients,
-					coverURL,
-					instructions,
-					tags
+					instructions
 				}
 			});
 
